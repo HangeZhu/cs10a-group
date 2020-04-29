@@ -28,10 +28,14 @@ answer_list = [p1_ans, p2_ans, p3_ans, p4_ans, p5_ans, p6_ans, p7_ans, p8_ans, p
 
 
 
+
 import random
+def select():
+    return random.choice(picture_list)
+
 def playcrossword():
     correct = 0
-
+    
     yesorno = input("Want to play a crossword game? [y/n]")
     while yesorno == "y":
         #randomly generate a picture from picture list
