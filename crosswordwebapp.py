@@ -41,9 +41,11 @@ def main():
 def play():
     global state
     word=random.choice(picture_list)
+    pic=word.show()
     return render_template("start.html",state=state)
 
 @app.route('/play',methods=['GET','POST'])
+
 
 
 @app.route('/about')
