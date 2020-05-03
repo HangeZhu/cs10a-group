@@ -23,34 +23,31 @@ p7 = Image.open("p7.jpg")
 p8 = Image.open("p8.jpg")
 p9 = Image.open("p9.jpg")
 p10 = Image.open("p10.jpg")
+blackjack = Image.open("blackjack.jpg")
 picture_list = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10]
 answer_list = [p1_ans, p2_ans, p3_ans, p4_ans, p5_ans, p6_ans, p7_ans, p8_ans, p9_ans, p10_ans]
 
 
 
-
 import random
-def select():
-    return random.choice(picture_list)
 
 def playcrossword():
-   
+    correct = 0
     
     yesorno = input("Want to play a crossword game? [y/n]")
-    while yesorno == "y" or yesorno == "Y" or yesorno == "yes" or yesorno == "Yes":
-        correct = 0
+    while yesorno == "y":
         #randomly generate a picture from picture list
         picture = random.choice(picture_list)
-        
+
         #get the position of the picture in the picture list
         sequence = picture_list.index(picture)
-        
+
         #get the answer for the randomly generated picture
         answer = answer_list[sequence]
-        
+
         showpic = picture.show()
         for i in range(len(answer)):
-            user_answer = input("What is the answer for space "+ str(i+1) + "? (All in lower case)")
+            user_answer = input("What is the answer for space "+ str(i+1) + "?")
             if user_answer == answer[i]:
                 correct += 1
                 print("Congrats! You got it right.")
@@ -61,9 +58,108 @@ def playcrossword():
                 print("Your current score is ", str(correct), "/", str(i+1))
                 print()
 
-        print("You finished all! Your final score is "+str(correct)+ "/"+str(i+1))
-        
+        print("You finished all!")
+
         yesorno = input("Want to play a crossword game? [y/n]")
+
+    return("Goodbye!")
+
+def twentyone():
+    blackjack.show()
+    money=200
+    print('You have 200$, you can get/loss 20$ by winning/losing each game.')
+    play=input('You want to play?(Y/N)')
+    while play=='Y':
+        p=0
+        cards=[]
+        one=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+        if one=='J' or one=='Q' or one=='K' or one==10:
+            p+=10
+        if one in range(2,10):
+            p+=one
+        if one=='A':
+            p+=11
+        two=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+        if two=='J' or two=='Q' or two=='K' or two==10:
+            p+=10
+        if two in range(2,10):
+            p+=two
+        if two=='A' and p>10:
+            p+=1
+        if two=='A' and p<=10:
+            p+=11 
+        cards.append(one)
+        cards.append(two)
+        print('Your first two cards are',cards)
         
-    print("Goodbye!")
-playcrossword()
+        want=input('do you want one more card(Y/N)')
+        while want=='Y':
+            card=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+            cards.append(card)
+            print('your cards are',cards)
+            if card=='J' or card=='Q' or card=='K' or card==10:
+                p+=10
+            if card in range(2,10):
+                p+=card
+            if card=='A' and p>10:
+                p+=1
+            if card=='A' and p<=10:
+                p+=11
+            want=input('do you want one more card(Y/N)')   
+        comcards=[]
+        c=0
+        cone=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+        if cone=='J' or cone=='Q' or cone=='K' or cone==10:
+            c+=10
+        if cone in range(2,10):
+            c+=cone
+        if cone=='A':
+            c+=11
+        ctwo=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+        if ctwo=='J' or ctwo=='Q' or ctwo=='K' or ctwo==10:
+            c+=10
+        if ctwo in range(2,10):
+            c+=ctwo
+        if ctwo=='A' and p>10:
+            c+=1
+        if ctwo=='A' and p<=10:
+            c+=11
+        comcards.append(cone)
+        comcards.append(ctwo)
+        while c<=14:
+            ccard=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
+            comcards.append(ccard)
+            if ccard=='J' or ccard=='Q' or ccard=='K' or ccard==10:
+                c+=10
+            if ccard in range(2,10):
+                c+=ccard
+            if ccard=='A' and p>10:
+                c+=1
+            if ccard=='A' and c<=10:
+                c+=11    
+        print('bankers cards are',comcards,p,c)
+        
+        if p>c and p<=21:
+            money+=20
+            print('you WIN now you have'+str(money)+'$')
+        if c>21:
+            money+=20
+            print('you WIN now you have'+str(money)+'$')
+        if p==c and c<=21:
+            money-=20
+            print('you LOSE now you have'+str(money)+'$')
+        if p<c and c<=21:
+            money-=20
+            print('you LOSE now you have'+str(money)+'$')
+        if p>c and p>21 and c<=21:
+            money-=20
+            print('you LOSE now you have'+str(money)+'$')
+        play=input('You want to play?(Y/N)')
+    print('Goodbye')
+def play():
+    a=input('What do you want to play?(blackjack or crossword)')
+    if a=='blackjack':
+        twentyone()
+    if a=='crossword':
+        playcrossword()
+play()
