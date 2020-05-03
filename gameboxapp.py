@@ -68,8 +68,8 @@ def twentyone():
     blackjack.show()
     money=200
     print('You have 200$, you can get/loss 20$ by winning/losing each game.')
-    play=input('You want to play?(Y/N)')
-    while play=='Y':
+    play=input('You want to play?(y/n)')
+    while play=='y':
         p=0
         cards=[]
         one=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
@@ -92,8 +92,8 @@ def twentyone():
         cards.append(two)
         print('Your first two cards are',cards)
         
-        want=input('do you want one more card(Y/N)')
-        while want=='Y':
+        want=input('do you want one more card(y/n)')
+        while want=='y':
             card=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
             cards.append(card)
             print('your cards are',cards)
@@ -105,7 +105,7 @@ def twentyone():
                 p+=1
             if card=='A' and p<=10:
                 p+=11
-            want=input('do you want one more card(Y/N)')   
+            want=input('do you want one more card(y/n)')   
         comcards=[]
         c=0
         cone=random.choice([2,3,4,5,6,7,8,9,10,'J','Q','K','A'])
@@ -137,24 +137,24 @@ def twentyone():
                 c+=1
             if ccard=='A' and c<=10:
                 c+=11    
-        print('bankers cards are',comcards,p,c)
+        print('bankers cards are',comcards)
         
         if p>c and p<=21:
             money+=20
-            print('you WIN now you have'+str(money)+'$')
+            print('you WIN now you have '+str(money)+'$')
         if c>21:
             money+=20
-            print('you WIN now you have'+str(money)+'$')
+            print('you WIN now you have '+str(money)+'$')
         if p==c and c<=21:
             money-=20
-            print('you LOSE now you have'+str(money)+'$')
+            print('you LOSE now you have '+str(money)+'$')
         if p<c and c<=21:
             money-=20
-            print('you LOSE now you have'+str(money)+'$')
+            print('you LOSE now you have '+str(money)+'$')
         if p>c and p>21 and c<=21:
             money-=20
-            print('you LOSE now you have'+str(money)+'$')
-        play=input('You want to play?(Y/N)')
+            print('you LOSE now you have '+str(money)+'$')
+        play=input('You want to play?(y/n)')
     print('Goodbye')
 def play():
     a=input('What do you want to play?(blackjack or crossword)')
