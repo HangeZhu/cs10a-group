@@ -62,7 +62,7 @@ def playcrossword():
 
         yesorno = input("Want to play a crossword game? [y/n]")
 
-    return("Goodbye!")
+    print("Goodbye!")
 
 def twentyone():
     blackjack.show()
